@@ -5,8 +5,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/fragment_container"
+    android:background="@color/colorPrimaryDark"
     tools:context="techease.com.shop4hunt.activities.MainActivity">
 
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="10sp"
+        android:layout_marginRight="15sp"/>
 
 </RelativeLayout>
