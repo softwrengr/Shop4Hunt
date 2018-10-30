@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/colorPrimary"
+    android:background="@drawable/gradient_background"
     tools:context="techease.com.shop4hunt.fragments.LoginFragment">
 
 
@@ -21,6 +21,8 @@
             android:layout_gravity="center"
             android:layout_marginTop="10sp"
             android:src="@drawable/logo"/>
+
+
 
         <EditText
             android:id="@+id/et_email"
@@ -74,7 +76,7 @@
             android:layout_marginLeft="30sp"
             android:layout_marginRight="30sp"
             android:layout_marginTop="20sp"
-            android:background="@drawable/email_back"
+            android:background="@color/colorPrimary"
             android:gravity="center"
             android:text="Login"
             android:textColor="@color/white" />
@@ -86,9 +88,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20sp"
+        android:layout_marginBottom="17sp"
         android:layout_marginLeft="30sp"
-        android:text="New ?"
+        android:text="New User ?"
         android:textColor="@color/white"
         android:textSize="18sp" />
 

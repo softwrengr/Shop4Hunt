@@ -1,11 +1,15 @@
 package techease.com.shop4hunt.activities;
 
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import techease.com.shop4hunt.R;
+import techease.com.shop4hunt.fragments.LoginFragment;
+import techease.com.shop4hunt.fragments.LoginSignupFragment;
+import techease.com.shop4hunt.utils.GeneralUtils;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,13 +18,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                startActivity(new Intent(MainActivity.this,HomeActivity.class));
-            }
-        },3000);
+        GeneralUtils.connectFragment(MainActivity.this,new LoginSignupFragment());
     }
 }
