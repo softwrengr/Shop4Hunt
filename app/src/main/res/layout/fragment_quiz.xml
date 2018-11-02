@@ -1,13 +1,169 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
     tools:context="techease.com.shop4hunt.fragments.QuizFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
-</FrameLayout>
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical">
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Question :"
+          android:textColor="@color/white"
+          android:textSize="17sp"
+          android:textStyle="bold"
+          android:layout_marginLeft="15sp"/>
+
+
+      <TextView
+          android:id="@+id/question"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="how many countries in south Asia ?"
+          android:layout_marginRight="15sp"
+          android:maxLines="4"
+          android:textColor="@color/white"
+          android:textSize="16sp"
+          android:layout_marginTop="10sp"
+          android:layout_marginLeft="15sp"/>
+
+      <View
+          android:layout_width="match_parent"
+          android:layout_height="1sp"
+          android:background="@color/white"
+          android:layout_marginTop="10sp"/>
+
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Answers :"
+          android:textColor="@color/white"
+          android:textSize="17sp"
+          android:textStyle="bold"
+          android:layout_marginTop="10sp"
+          android:layout_marginLeft="25sp"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10sp"
+        android:orientation="horizontal">
+        <RadioButton
+            android:id="@+id/radio_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15sp"/>
+
+        <TextView
+            android:id="@+id/tv_answerOne"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Answers 1"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:layout_marginLeft="15sp"/>
+    </LinearLayout>
+
+      <LinearLayout
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="10sp"
+          android:orientation="horizontal">
+          <RadioButton
+              android:id="@+id/radio_two"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginLeft="15sp"/>
+
+          <TextView
+              android:id="@+id/tv_answerTwo"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Answers 2"
+              android:textColor="@color/white"
+              android:textSize="16sp"
+              android:layout_marginLeft="15sp"/>
+      </LinearLayout>
+
+      <LinearLayout
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="10sp"
+          android:orientation="horizontal">
+          <RadioButton
+              android:id="@+id/radio_three"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginLeft="15sp"/>
+
+          <TextView
+              android:id="@+id/tv_answerThree"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Answers 3"
+              android:textColor="@color/white"
+              android:textSize="16sp"
+              android:layout_marginLeft="15sp"/>
+      </LinearLayout>
+      <LinearLayout
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="10sp"
+          android:orientation="horizontal">
+          <RadioButton
+              android:id="@+id/radio_four"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginLeft="15sp"/>
+
+          <TextView
+              android:id="@+id/tv_answerFour"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Answers 4"
+              android:textColor="@color/white"
+              android:textSize="16sp"
+              android:layout_marginLeft="15sp"/>
+      </LinearLayout>
+
+
+
+
+  </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_alignParentBottom="true">
+
+
+        <!--<Button-->
+            <!--android:id="@+id/btnPrevious"-->
+            <!--android:layout_width="170sp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@drawable/btn_light"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:text="previous"/>-->
+
+        <Button
+            android:id="@+id/btnNext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_btn"
+            android:textColor="@color/white"
+            android:layout_marginLeft="0sp"
+            android:text="Next"/>
+
+    </LinearLayout>
+
+
+</RelativeLayout>
