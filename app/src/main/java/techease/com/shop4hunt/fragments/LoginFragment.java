@@ -12,6 +12,21 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Call;
@@ -22,6 +37,7 @@ import techease.com.shop4hunt.models.loginDataModel.LoginResponseModel;
 import techease.com.shop4hunt.networking.ApiClient;
 import techease.com.shop4hunt.networking.ApiInterface;
 import techease.com.shop4hunt.utils.AlertUtils;
+import techease.com.shop4hunt.utils.Configuration;
 import techease.com.shop4hunt.utils.GeneralUtils;
 
 public class LoginFragment extends Fragment {
@@ -70,26 +86,65 @@ public class LoginFragment extends Fragment {
     }
 
     private void userLogin() {
-        ApiInterface services = ApiClient.getApiClient().create(ApiInterface.class);
-        Call<LoginResponseModel> userLogin = services.userLogin(strEmail, strPassword);
-        userLogin.enqueue(new Callback<LoginResponseModel>() {
-            @Override
-            public void onResponse(Call<LoginResponseModel> call, Response<LoginResponseModel> response) {
-                alertDialog.dismiss();
-                if (response.body().getSuccess()) {
 
-                      GeneralUtils.connectFragment(getActivity(),new QuizFragment());
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://choicegeek.com/mcqs/public/api/login"
+                , new com.android.volley.Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                alertDialog.dismiss();
+                Log.d("resp",response);
+                if (response.contains("true")) {
+
+                    try {
+                        if (alertDialog != null)
+                            alertDialog.dismiss();
+                        JSONObject jsonObject = new JSONObject(response);
+                        JSONObject object = jsonObject.getJSONObject("data");
+
+                            int id = object.getInt("id");
+                            Log.d("resp",String.valueOf(id));
+                            GeneralUtils.connectFragment(getActivity(),new QuizFragment());
+                            GeneralUtils.putIntegerValueInEditor(getActivity(),"id",id);
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
 
                 } else  {
-                    Toast.makeText(getActivity(), "you got some error", Toast.LENGTH_SHORT).show();
+                    if (alertDialog != null)
+                        alertDialog.dismiss();
+                    Toast.makeText(getActivity(), "Email or password is incorrect", Toast.LENGTH_SHORT).show();
                 }
+
+            }
+        }, new com.android.volley.Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                if (alertDialog != null)
+                    alertDialog.dismiss();
+                Toast.makeText(getActivity(), "Email or password is incorrect", Toast.LENGTH_SHORT).show();
+            }
+        }) {
+            @Override
+            public String getBodyContentType() {
+                return "application/x-www-form-urlencoded;charset=UTF-8";
             }
 
             @Override
-            public void onFailure(Call<LoginResponseModel> call, Throwable t) {
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("email", strEmail);
+                params.put("password",strPassword);
+                return params;
 
             }
-        });
+        };
+        RequestQueue mRequestQueue = Volley.newRequestQueue(getActivity());
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(20000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        mRequestQueue.add(stringRequest);
     }
 
 

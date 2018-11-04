@@ -124,8 +124,8 @@ public class SignupFragment extends Fragment {
         } else {
             etEmail.setError(null);
         }
-        if (strPassword.isEmpty()) {
-            etPassword.setError("Please enter a valid password");
+        if (strPassword.isEmpty() || strPassword.length()<6) {
+            etPassword.setError("Please enter a strong password");
             valid = false;
         } else {
             etPassword.setError(null);

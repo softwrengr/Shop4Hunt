@@ -8,21 +8,23 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class LoginDetailModel {
+
+
     @SerializedName("id")
     @Expose
     private Integer id;
-    @SerializedName("firstname")
+    @SerializedName("name")
     @Expose
-    private String firstname;
-    @SerializedName("lastname")
+    private String name;
+    @SerializedName("phone")
     @Expose
-    private String lastname;
-    @SerializedName("username")
-    @Expose
-    private String username;
+    private String phone;
     @SerializedName("email")
     @Expose
     private String email;
+    @SerializedName("type")
+    @Expose
+    private Object type;
     @SerializedName("created_at")
     @Expose
     private String createdAt;
@@ -38,28 +40,20 @@ public class LoginDetailModel {
         this.id = id;
     }
 
-    public String getFirstname() {
-        return firstname;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getEmail() {
@@ -68,6 +62,14 @@ public class LoginDetailModel {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Object getType() {
+        return type;
+    }
+
+    public void setType(Object type) {
+        this.type = type;
     }
 
     public String getCreatedAt() {

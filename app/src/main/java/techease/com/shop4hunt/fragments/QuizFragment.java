@@ -47,8 +47,7 @@ public class QuizFragment extends Fragment implements RewardedVideoAdListener {
     View view;
     @BindView(R.id.btnNext)
     Button btnNext;
-    //    @BindView(R.id.btnPrevious)
-//    Button btnPrevious;
+
     @BindView(R.id.question)
     TextView tvQuestion;
     @BindView(R.id.tv_answerOne)

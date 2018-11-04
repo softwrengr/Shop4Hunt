@@ -50,9 +50,11 @@ public class GeneralUtils {
     }
 
 
-
-
     public static SharedPreferences getSharedPreferences(Context context) {
         return context.getSharedPreferences(Configuration.My_PREF, 0);
+    }
+
+    public static int getUserID(Context context){
+        return getSharedPreferences(context).getInt("id",0);
     }
 }

@@ -16,6 +16,7 @@
           android:text="Question :"
           android:textColor="@color/white"
           android:textSize="17sp"
+          android:padding="10sp"
           android:textStyle="bold"
           android:layout_marginLeft="15sp"/>
 
@@ -28,6 +29,7 @@
           android:layout_marginRight="15sp"
           android:maxLines="4"
           android:textColor="@color/white"
+          android:padding="5sp"
           android:textSize="16sp"
           android:layout_marginTop="10sp"
           android:layout_marginLeft="15sp"/>
@@ -158,7 +160,7 @@
             android:id="@+id/btnNext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/rounded_btn"
+            android:background="@drawable/btn_light"
             android:textColor="@color/white"
             android:layout_marginLeft="0sp"
             android:text="Next"/>
