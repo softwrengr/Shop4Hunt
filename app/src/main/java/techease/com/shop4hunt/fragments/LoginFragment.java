@@ -1,5 +1,7 @@
 package techease.com.shop4hunt.fragments;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -92,7 +94,7 @@ public class LoginFragment extends Fragment {
             @Override
             public void onResponse(String response) {
                 alertDialog.dismiss();
-                Log.d("resp",response);
+                Log.d("resp", response);
                 if (response.contains("true")) {
 
                     try {
@@ -101,17 +103,23 @@ public class LoginFragment extends Fragment {
                         JSONObject jsonObject = new JSONObject(response);
                         JSONObject object = jsonObject.getJSONObject("data");
 
-                            int id = object.getInt("id");
-                            Log.d("resp",String.valueOf(id));
-                            GeneralUtils.connectFragment(getActivity(),new QuizFragment());
-                            GeneralUtils.putIntegerValueInEditor(getActivity(),"id",id);
+                        int id = object.getInt("id");
+                        String check_login = object.getString("check_login");
+                        GeneralUtils.putIntegerValueInEditor(getActivity(), "id", id);
+
+                        if(check_login.equals("true")){
+                            GeneralUtils.connectFragment(getActivity(), new QuizFragment());
+                        }
+                        else {
+                         showAlert();
+                        }
 
 
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
 
-                } else  {
+                } else {
                     if (alertDialog != null)
                         alertDialog.dismiss();
                     Toast.makeText(getActivity(), "Email or password is incorrect", Toast.LENGTH_SHORT).show();
@@ -135,7 +143,7 @@ public class LoginFragment extends Fragment {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("email", strEmail);
-                params.put("password",strPassword);
+                params.put("password", strPassword);
                 return params;
 
             }
@@ -167,6 +175,20 @@ public class LoginFragment extends Fragment {
             etPassword.setError(null);
         }
         return valid;
+    }
+
+    private void showAlert(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("Message");
+        builder.setTitle("you have played this contest already");
+        builder.setCancelable(false);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                GeneralUtils.connectFragment(getActivity(),new HomeFragment());
+            }
+        });
+        builder.show();
     }
 
 

@@ -13,14 +13,6 @@
     <list default="true" id="24e1f7f2-7615-4c44-bd2d-14520f50c82e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/techease/com/shop4hunt/fragments/LoginFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/techease/com/shop4hunt/fragments/LoginFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/techease/com/shop4hunt/fragments/QuizFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/techease/com/shop4hunt/fragments/QuizFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/techease/com/shop4hunt/fragments/SignupFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/techease/com/shop4hunt/fragments/SignupFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/techease/com/shop4hunt/fragments/ThanksFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/techease/com/shop4hunt/fragments/ThanksFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/techease/com/shop4hunt/models/loginDataModel/LoginDetailModel.java" afterPath="$PROJECT_DIR$/app/src/main/java/techease/com/shop4hunt/models/loginDataModel/LoginDetailModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/techease/com/shop4hunt/utils/Configuration.java" afterPath="$PROJECT_DIR$/app/src/main/java/techease/com/shop4hunt/utils/Configuration.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/techease/com/shop4hunt/utils/GeneralUtils.java" afterPath="$PROJECT_DIR$/app/src/main/java/techease/com/shop4hunt/utils/GeneralUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_login.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_login.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_quiz.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_quiz.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -43,7 +35,31 @@
     </system>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf>
+      <file leaf-file-name="LoginFragment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/techease/com/shop4hunt/fragments/LoginFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1599">
+              <caret line="183" column="37" lean-forward="false" selection-start-line="183" selection-start-column="37" selection-end-line="183" selection-end-column="37" />
+              <folding>
+                <element signature="e#6399#6633#0" expanded="true" />
+                <element signature="e#6632#6633#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ThanksFragment.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/techease/com/shop4hunt/fragments/ThanksFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="420">
+              <caret line="57" column="0" lean-forward="true" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -1811,8 +1827,8 @@
         <option value="$PROJECT_DIR$/app/src/main/java/techease/com/shop4hunt/models/loginDataModel/LoginResponseModel.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/techease/com/shop4hunt/models/loginDataModel/LoginDetailModel.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/techease/com/shop4hunt/utils/Configuration.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/techease/com/shop4hunt/fragments/LoginFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/techease/com/shop4hunt/fragments/SignupFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/techease/com/shop4hunt/fragments/LoginFragment.java" />
       </list>
     </option>
   </component>
@@ -1836,10 +1852,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
-      <pane id="Scratches" />
-      <pane id="ProjectPane" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -1908,6 +1921,9 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2281,11 +2297,19 @@
       <option name="project" value="LOCAL" />
       <updated>1541193565682</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="bug fixed in login and sign up screen">
+      <created>1541356138292</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1541356138292</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1280" height="800" extended-state="0" />
+    <frame x="0" y="0" width="1280" height="800" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32968536" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -2303,7 +2327,7 @@
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2540453" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2540453" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Device File Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -2327,7 +2351,8 @@
     <MESSAGE value="login sign up done" />
     <MESSAGE value="webview work done" />
     <MESSAGE value="quiz work done" />
-    <option name="LAST_COMMIT_MESSAGE" value="quiz work done" />
+    <MESSAGE value="bug fixed in login and sign up screen" />
+    <option name="LAST_COMMIT_MESSAGE" value="bug fixed in login and sign up screen" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2612,7 +2637,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="477">
           <caret line="32" column="52" lean-forward="false" selection-start-line="32" selection-start-column="52" selection-end-line="32" selection-end-column="52" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2628,24 +2652,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="528">
           <caret line="51" column="40" lean-forward="false" selection-start-line="51" selection-start-column="40" selection-end-line="51" selection-end-column="40" />
-          <folding>
-            <element signature="e#563#564#0" expanded="true" />
-            <element signature="e#593#594#0" expanded="true" />
-            <element signature="e#640#641#0" expanded="true" />
-            <element signature="e#678#679#0" expanded="true" />
-            <element signature="e#718#719#0" expanded="true" />
-            <element signature="e#753#754#0" expanded="true" />
-            <element signature="e#810#811#0" expanded="true" />
-            <element signature="e#858#859#0" expanded="true" />
-            <element signature="e#892#893#0" expanded="true" />
-            <element signature="e#922#923#0" expanded="true" />
-            <element signature="e#968#969#0" expanded="true" />
-            <element signature="e#1006#1007#0" expanded="true" />
-            <element signature="e#1047#1048#0" expanded="true" />
-            <element signature="e#1074#1075#0" expanded="true" />
-            <element signature="e#1124#1125#0" expanded="true" />
-            <element signature="e#1156#1157#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2653,36 +2659,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1305">
           <caret line="88" column="5" lean-forward="false" selection-start-line="88" selection-start-column="5" selection-end-line="88" selection-end-column="5" />
-          <folding>
-            <element signature="e#735#736#0" expanded="false" />
-            <element signature="e#760#761#0" expanded="false" />
-            <element signature="e#797#798#0" expanded="false" />
-            <element signature="e#825#826#0" expanded="false" />
-            <element signature="e#856#857#0" expanded="false" />
-            <element signature="e#883#884#0" expanded="false" />
-            <element signature="e#923#924#0" expanded="false" />
-            <element signature="e#955#956#0" expanded="false" />
-            <element signature="e#987#988#0" expanded="false" />
-            <element signature="e#1015#1016#0" expanded="false" />
-            <element signature="e#1057#1058#0" expanded="false" />
-            <element signature="e#1091#1092#0" expanded="false" />
-            <element signature="e#1123#1124#0" expanded="false" />
-            <element signature="e#1151#1152#0" expanded="false" />
-            <element signature="e#1193#1194#0" expanded="false" />
-            <element signature="e#1227#1228#0" expanded="false" />
-            <element signature="e#1258#1259#0" expanded="false" />
-            <element signature="e#1285#1286#0" expanded="false" />
-            <element signature="e#1325#1326#0" expanded="false" />
-            <element signature="e#1357#1358#0" expanded="false" />
-            <element signature="e#1393#1394#0" expanded="false" />
-            <element signature="e#1425#1426#0" expanded="false" />
-            <element signature="e#1475#1476#0" expanded="false" />
-            <element signature="e#1517#1518#0" expanded="false" />
-            <element signature="e#1553#1554#0" expanded="false" />
-            <element signature="e#1585#1586#0" expanded="false" />
-            <element signature="e#1635#1636#0" expanded="false" />
-            <element signature="e#1677#1678#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2690,35 +2666,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="17" column="29" lean-forward="false" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/techease/com/shop4hunt/fragments/ThanksFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="573">
-          <caret line="77" column="41" lean-forward="true" selection-start-line="47" selection-start-column="7" selection-end-line="77" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/techease/com/shop4hunt/fragments/QuizFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="248" column="0" lean-forward="false" selection-start-line="248" selection-start-column="0" selection-end-line="248" selection-end-column="0" />
-          <folding>
-            <element signature="e#2944#3994#0" expanded="true" />
-            <element signature="e#3993#3994#0" expanded="true" />
-            <element signature="e#9950#9966#0" expanded="true" />
-            <element signature="e#10722#11111#0" expanded="true" />
-            <element signature="e#11110#11111#0" expanded="true" />
-            <element signature="e#11164#11559#0" expanded="true" />
-            <element signature="e#11558#11559#0" expanded="true" />
-            <element signature="e#11614#12007#0" expanded="true" />
-            <element signature="e#12006#12007#0" expanded="true" />
-            <element signature="e#12061#12455#0" expanded="true" />
-            <element signature="e#12454#12455#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2730,18 +2677,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/techease/com/shop4hunt/fragments/LoginFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="774">
-          <caret line="125" column="107" lean-forward="false" selection-start-line="125" selection-start-column="107" selection-end-line="125" selection-end-column="107" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/techease/com/shop4hunt/fragments/SignupFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="468">
           <caret line="127" column="54" lean-forward="false" selection-start-line="127" selection-start-column="54" selection-end-line="127" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/techease/com/shop4hunt/fragments/LoginFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1599">
+          <caret line="183" column="37" lean-forward="false" selection-start-line="183" selection-start-column="37" selection-end-line="183" selection-end-column="37" />
+          <folding>
+            <element signature="e#6399#6633#0" expanded="true" />
+            <element signature="e#6632#6633#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/techease/com/shop4hunt/fragments/QuizFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1406">
+          <caret line="248" column="0" lean-forward="false" selection-start-line="248" selection-start-column="0" selection-end-line="248" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/techease/com/shop4hunt/fragments/ThanksFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="57" column="0" lean-forward="true" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
           <folding />
         </state>
       </provider>
