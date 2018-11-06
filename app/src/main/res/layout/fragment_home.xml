@@ -3,13 +3,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="techease.com.shop4hunt.fragments.HomeFragment">
-    <WebView
-        android:id="@+id/webView"
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/btn_play">
+        <WebView
+            android:id="@+id/webView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/btn_play">
 
-    </WebView>
+        </WebView>
+    </ScrollView>
 
     <Button
         android:id="@+id/btn_play"

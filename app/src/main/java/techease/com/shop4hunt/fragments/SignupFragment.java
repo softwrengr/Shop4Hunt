@@ -81,12 +81,16 @@ public class SignupFragment extends Fragment {
             @Override
             public void onResponse(Call<SignupResponseModel> call, Response<SignupResponseModel> response) {
                 alertDialog.dismiss();
-                if (response.body().getSuccess()) {
+                if (!response.body().getSuccess()) {
+                    Toast.makeText(getActivity(), "you got some error", Toast.LENGTH_SHORT).show();
+                } else if(response.body().getSuccess()) {
+
                     Toast.makeText(getActivity(), "signup done successfully", Toast.LENGTH_SHORT).show();
                     GeneralUtils.connectFragment(getActivity(), new LoginFragment());
 
-                } else {
-                    Toast.makeText(getActivity(), "you got some error", Toast.LENGTH_SHORT).show();
+                }
+                else if(response.body().getResponseCode().equals("400")){
+                    Toast.makeText(getActivity(), "already", Toast.LENGTH_SHORT).show();
                 }
             }
 

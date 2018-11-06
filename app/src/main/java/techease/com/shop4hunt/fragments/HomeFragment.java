@@ -1,6 +1,8 @@
 package techease.com.shop4hunt.fragments;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -13,8 +15,25 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import techease.com.shop4hunt.R;
 import techease.com.shop4hunt.utils.AlertUtils;
+import techease.com.shop4hunt.utils.Configuration;
 import techease.com.shop4hunt.utils.GeneralUtils;
 import techease.com.shop4hunt.utils.NetworkUtils;
 
@@ -24,6 +43,7 @@ public class HomeFragment extends Fragment {
     Button btnPlay;
     android.support.v7.app.AlertDialog alertDialog;
     String url = "http://www.shop4hunt.com/";
+    String strBtnText = "play contest";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,14 +67,12 @@ public class HomeFragment extends Fragment {
 
     private void initUI() {
 
-        if (NetworkUtils.isNetworkConnected(getActivity())) {
+
+        if(NetworkUtils.isNetworkConnected(getActivity())){
             loadWebView();
-        } else {
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setTitle("Internet Issue");
-            builder.setMessage("you have lost your connection please try again");
-            builder.setCancelable(false);
-            builder.show();
+        }
+        else {
+           showError();
         }
 
     }
@@ -97,6 +115,10 @@ public class HomeFragment extends Fragment {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             view.loadUrl(url);
+            if (!NetworkUtils.isNetworkConnected(getActivity())) {
+                showError();
+            }
+
             return false;
         }
 
@@ -107,6 +129,73 @@ public class HomeFragment extends Fragment {
             }
             super.onPageFinished(view, url);
         }
+    }
+
+    private void showError(){
+        SweetAlertDialog sweetAlertDialog = new SweetAlertDialog(getActivity(), SweetAlertDialog.ERROR_TYPE);
+        sweetAlertDialog.setConfirmText("Refresh")
+                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                        GeneralUtils.connectFragment(getActivity(),new HomeFragment());
+                        sweetAlertDialog.dismiss();
+                    }
+                })
+                .setTitleText("Oops...")
+                .setContentText("No internet connection!")
+                .setOnKeyListener(new DialogInterface.OnKeyListener() {
+                    @Override
+                    public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+                        return false;
+                    }
+                });
+
+        sweetAlertDialog.setCancelable(false);
+        sweetAlertDialog.show();
+    }
+
+
+    public void apiCall() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Configuration.ChangeText
+                , new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                if(response.contains("")){
+                    try {
+                        JSONObject jsonObject = new JSONObject(response);
+                        strBtnText = jsonObject.getString("");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }) {
+            @Override
+            public String getBodyContentType() {
+                return "application/x-www-form-urlencoded;charset=UTF-8";
+            }
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("check", "true");
+                return params;
+
+            }
+        };
+        RequestQueue mRequestQueue = Volley.newRequestQueue(getActivity());
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(20000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        mRequestQueue.add(stringRequest);
 
     }
+
 }

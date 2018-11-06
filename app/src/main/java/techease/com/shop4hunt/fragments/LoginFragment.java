@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +32,7 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -178,17 +180,27 @@ public class LoginFragment extends Fragment {
     }
 
     private void showAlert(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("Message");
-        builder.setTitle("you have played this contest already");
-        builder.setCancelable(false);
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                GeneralUtils.connectFragment(getActivity(),new HomeFragment());
-            }
-        });
-        builder.show();
+        SweetAlertDialog sweetAlertDialog = new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE);
+        sweetAlertDialog.setConfirmText("Back")
+                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                     GeneralUtils.connectFragment(getActivity(),new HomeFragment());
+                     sweetAlertDialog.dismiss();
+                    }
+                })
+                .setTitleText("Message")
+                .setContentText("You have play this contest already please wait for the next one!")
+                .setOnKeyListener(new DialogInterface.OnKeyListener() {
+                    @Override
+                    public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+
+                        return false;
+                    }
+                });
+
+        sweetAlertDialog.setCancelable(false);
+        sweetAlertDialog.show();
     }
 
 
