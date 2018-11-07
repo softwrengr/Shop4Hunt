@@ -40,7 +40,7 @@ public class SignupFragment extends Fragment {
     EditText etPassword;
     @BindView(R.id.btn_signup)
     Button btnSignup;
-    String strName, strEmail, strPhone, strPassword;
+    String strName, strEmail, strPhone, strPassword, strResponse;
 
     private boolean valid = false;
 
@@ -76,27 +76,28 @@ public class SignupFragment extends Fragment {
 
     private void userRegistration() {
         ApiInterface services = ApiClient.getApiClient().create(ApiInterface.class);
-        Call<SignupResponseModel> userLogin = services.userRegistration(strName,strPhone,strEmail, strPassword);
+        Call<SignupResponseModel> userLogin = services.userRegistration(strName, strPhone, strEmail, strPassword);
         userLogin.enqueue(new Callback<SignupResponseModel>() {
             @Override
             public void onResponse(Call<SignupResponseModel> call, Response<SignupResponseModel> response) {
                 alertDialog.dismiss();
-                if (!response.body().getSuccess()) {
-                    Toast.makeText(getActivity(), "you got some error", Toast.LENGTH_SHORT).show();
-                } else if(response.body().getSuccess()) {
+                strResponse = response.body().getMessage();
+                if (response.body().getMessage().equals("User successfully registered")) {
 
-                    Toast.makeText(getActivity(), "signup done successfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "User successfully Registered", Toast.LENGTH_SHORT).show();
                     GeneralUtils.connectFragment(getActivity(), new LoginFragment());
 
-                }
-                else if(response.body().getResponseCode().equals("400")){
-                    Toast.makeText(getActivity(), "already", Toast.LENGTH_SHORT).show();
+                } else if (response.body().getMessage().equals("Email Already Exist")) {
+                    Toast.makeText(getActivity(), "User already exist with this email or phone", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getActivity(), "you got some error", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<SignupResponseModel> call, Throwable t) {
-
+                alertDialog.dismiss();
+                Toast.makeText(getActivity(), "User already exist with this email or phone", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -128,7 +129,7 @@ public class SignupFragment extends Fragment {
         } else {
             etEmail.setError(null);
         }
-        if (strPassword.isEmpty() || strPassword.length()<6) {
+        if (strPassword.isEmpty() || strPassword.length() < 6) {
             etPassword.setError("Please enter a strong password");
             valid = false;
         } else {

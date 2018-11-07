@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -44,27 +45,42 @@ public class ThanksFragment extends Fragment {
     android.support.v7.app.AlertDialog alertDialog;
     View view;
     String userID;
-    Button btnFollowFB;
     public static String FACEBOOK_URL = "https://www.facebook.com/PyarBareyLamhy/";
-    public static String FACEBOOK_PAGE_ID = "PyarBareyLamhy";
+    public static String FACEBOOK_PAGE_ID = "367426056714023";
+    public static String INSTAGRAM_URL = "https://www.instagram.com/shop4hunt/";
+    LinearLayout layoutInsta,layoutFb;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_thanks, container, false);
-        btnFollowFB = view.findViewById(R.id.followFB);
+        layoutFb = view.findViewById(R.id.layoutFb);
+        layoutInsta = view.findViewById(R.id.layoutInsta);
+
         userID = String.valueOf(GeneralUtils.getUserID(getActivity()));
         alertDialog = AlertUtils.createProgressDialog(getActivity());
         alertDialog.show();
         apiCall();
 
-        btnFollowFB.setOnClickListener(new View.OnClickListener() {
+        Toast.makeText(getActivity(), String.valueOf(QuizFragment.count), Toast.LENGTH_SHORT).show();
+
+        layoutFb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent facebookIntent = new Intent(Intent.ACTION_VIEW);
                 String facebookUrl = getFacebookPageURL(getActivity());
                 facebookIntent.setData(Uri.parse(facebookUrl));
                 startActivity(facebookIntent);
+            }
+        });
+
+        layoutInsta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Intent facebookIntent = new Intent(Intent.ACTION_VIEW);
+                //Intent facebookUrl = intagramPageLoad(INSTAGRAM_URL,getActivity());
+                intagramPageLoad(INSTAGRAM_URL,getActivity());
+
             }
         });
         return view;
@@ -147,5 +163,26 @@ public class ThanksFragment extends Fragment {
             return FACEBOOK_URL;
         }
 
+    }
+
+    public void intagramPageLoad(String url,Context context){
+        PackageManager pm = context.getPackageManager();
+        final Intent intent = new Intent(Intent.ACTION_VIEW);
+        try {
+            if (pm.getPackageInfo("com.instagram.android", 0) != null) {
+                if (url.endsWith("/")) {
+                    url = url.substring(0, url.length() - 1);
+                }
+                final String username = url.substring(url.lastIndexOf("/") + 1);
+                intent.setData(Uri.parse("http://instagram.com/_u/" + username));
+                intent.setPackage("com.instagram.android");
+                startActivity(intent);
+               // return intent;
+            }
+        } catch (PackageManager.NameNotFoundException ignored) {
+        }
+        intent.setData(Uri.parse(url));
+      //  return intent;
+        startActivity(intent);
     }
 }

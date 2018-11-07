@@ -14,6 +14,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -24,6 +25,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -50,6 +52,7 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+        apiCall();
         webView = view.findViewById(R.id.webView);
         btnPlay = view.findViewById(R.id.btn_play);
         initUI();
@@ -156,17 +159,25 @@ public class HomeFragment extends Fragment {
 
 
     public void apiCall() {
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, Configuration.ChangeText
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Configuration.ChangeText
                 , new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                if(response.contains("")){
+                if(response.contains("true")){
                     try {
                         JSONObject jsonObject = new JSONObject(response);
-                        strBtnText = jsonObject.getString("");
+                        JSONArray jsonArray = jsonObject.getJSONArray("data");
+                        JSONObject object = jsonArray.getJSONObject(0);
+                        strBtnText = object.getString("text");
+                        btnPlay.setText(strBtnText);
+                        Toast.makeText(getActivity(), strBtnText, Toast.LENGTH_SHORT).show();
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
+                }
+                else {
+                    strBtnText = "play contest";
+                    btnPlay.setText(strBtnText);
                 }
 
 

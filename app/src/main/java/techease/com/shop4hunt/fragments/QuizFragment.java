@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -69,6 +71,8 @@ public class QuizFragment extends Fragment implements RewardedVideoAdListener {
     RewardedVideoAd mRewardedVideoAd;
     int check = 0;
     int next = 1;
+    public static int count = 0;
+    String strCorrectAnswer, strUserAnswer;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -101,18 +105,22 @@ public class QuizFragment extends Fragment implements RewardedVideoAdListener {
                     loadVideo();
                     showAlertDialog();
                     apiCall(check);
+                    radioButtonEnabled();
                 } else if (next == 3) {
                     loadVideo();
                     showAlertDialog();
                     apiCall(check);
+                    radioButtonEnabled();
                 } else if (next == 4) {
                     loadVideo();
                     showAlertDialog();
                     apiCall(check);
+                    radioButtonEnabled();
                 } else if (next == 5) {
                     loadVideo();
                     showAlertDialog();
                     apiCall(check);
+                    radioButtonEnabled();
                 } else if (next == 6) {
                     GeneralUtils.connectFragment(getActivity(), new ThanksFragment());
                 }
@@ -182,61 +190,61 @@ public class QuizFragment extends Fragment implements RewardedVideoAdListener {
                         if (checking == 0) {
                             JSONObject jsonObject1 = jsonArray.getJSONObject(0);
                             String question = jsonObject1.getString("question");
-                            String option_a = jsonObject1.getString("option_a");
-                            String option_b = jsonObject1.getString("option_b");
-                            String option_c = jsonObject1.getString("option_c");
-                            String option_d = jsonObject1.getString("option_q");
-                            String correctAnswer = jsonObject1.getString("answer");
+                            String strOptionA = jsonObject1.getString("option_a");
+                            String strOptionB = jsonObject1.getString("option_b");
+                            String strOptionC = jsonObject1.getString("option_c");
+                            String strOptionD = jsonObject1.getString("option_q");
+                            strCorrectAnswer = jsonObject1.getString("answer");
 
-                            setQuestions(question, option_a, option_b, option_c, option_d, correctAnswer);
+                            setQuestions(question, strOptionA, strOptionB, strOptionC, strOptionD, strCorrectAnswer);
                             check++;
                             next++;
                         } else if (checking == 1) {
                             JSONObject jsonObject1 = jsonArray.getJSONObject(1);
                             String question = jsonObject1.getString("question");
-                            String option_a = jsonObject1.getString("option_a");
-                            String option_b = jsonObject1.getString("option_b");
-                            String option_c = jsonObject1.getString("option_c");
-                            String option_d = jsonObject1.getString("option_q");
-                            String correctAnswer = jsonObject1.getString("answer");
+                            String strOptionA = jsonObject1.getString("option_a");
+                            String strOptionB = jsonObject1.getString("option_b");
+                            String strOptionC = jsonObject1.getString("option_c");
+                            String strOptionD = jsonObject1.getString("option_q");
+                            strCorrectAnswer = jsonObject1.getString("answer");
 
-                            setQuestions(question, option_a, option_b, option_c, option_d, correctAnswer);
+                            setQuestions(question, strOptionA, strOptionB, strOptionC, strOptionD, strCorrectAnswer);
                             check++;
                             next++;
                         } else if (checking == 2) {
                             JSONObject jsonObject1 = jsonArray.getJSONObject(2);
                             String question = jsonObject1.getString("question");
-                            String option_a = jsonObject1.getString("option_a");
-                            String option_b = jsonObject1.getString("option_b");
-                            String option_c = jsonObject1.getString("option_c");
-                            String option_d = jsonObject1.getString("option_q");
-                            String correctAnswer = jsonObject1.getString("answer");
+                            String strOptionA = jsonObject1.getString("option_a");
+                            String strOptionB = jsonObject1.getString("option_b");
+                            String strOptionC = jsonObject1.getString("option_c");
+                            String strOptionD = jsonObject1.getString("option_q");
+                            strCorrectAnswer = jsonObject1.getString("answer");
 
-                            setQuestions(question, option_a, option_b, option_c, option_d, correctAnswer);
+                            setQuestions(question, strOptionA, strOptionB, strOptionC, strOptionD, strCorrectAnswer);
                             check++;
                             next++;
                         } else if (checking == 3) {
                             JSONObject jsonObject1 = jsonArray.getJSONObject(3);
                             String question = jsonObject1.getString("question");
-                            String option_a = jsonObject1.getString("option_a");
-                            String option_b = jsonObject1.getString("option_b");
-                            String option_c = jsonObject1.getString("option_c");
-                            String option_d = jsonObject1.getString("option_q");
-                            String correctAnswer = jsonObject1.getString("answer");
+                            String strOptionA = jsonObject1.getString("option_a");
+                            String strOptionB = jsonObject1.getString("option_b");
+                            String strOptionC = jsonObject1.getString("option_c");
+                            String strOptionD = jsonObject1.getString("option_q");
+                            strCorrectAnswer = jsonObject1.getString("answer");
 
-                            setQuestions(question, option_a, option_b, option_c, option_d, correctAnswer);
+                            setQuestions(question, strOptionA, strOptionB, strOptionC, strOptionD, strCorrectAnswer);
                             check++;
                             next++;
                         } else if (checking == 4) {
                             JSONObject jsonObject1 = jsonArray.getJSONObject(4);
                             String question = jsonObject1.getString("question");
-                            String option_a = jsonObject1.getString("option_a");
-                            String option_b = jsonObject1.getString("option_b");
-                            String option_c = jsonObject1.getString("option_c");
-                            String option_d = jsonObject1.getString("option_q");
-                            String correctAnswer = jsonObject1.getString("answer");
+                            String strOptionA = jsonObject1.getString("option_a");
+                            String strOptionB = jsonObject1.getString("option_b");
+                            String strOptionC = jsonObject1.getString("option_c");
+                            String strOptionD = jsonObject1.getString("option_q");
+                            strCorrectAnswer = jsonObject1.getString("answer");
 
-                            setQuestions(question, option_a, option_b, option_c, option_d, correctAnswer);
+                            setQuestions(question, strOptionA, strOptionB, strOptionC, strOptionD, strCorrectAnswer);
                             check++;
                             next++;
                         }
@@ -269,50 +277,61 @@ public class QuizFragment extends Fragment implements RewardedVideoAdListener {
 
     }
 
-    private void setQuestions(String question, String option_a, String option_b, String option_c, String option_d, String CorrectAnswer) {
+    private void setQuestions(String question, final String option_a, final String option_b, final String option_c, final String option_d, String correctAnswer) {
         tvQuestion.setText(question);
         tvAnswerOne.setText(option_a);
         tvAnswerTwo.setText(option_b);
         tvAnswerThree.setText(option_c);
         tvAnswerFour.setText(option_d);
+        final String realAnswer = correctAnswer;
+
 
         radioButtonOne.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                  radioButtonTwo.setChecked(false);
-                  radioButtonThree.setChecked(false);
-                  radioButtonFour.setChecked(false);
+                if (isChecked) {
+                    strUserAnswer = "option_a";
+                    radioButtonTwo.setEnabled(false);
+                    radioButtonThree.setEnabled(false);
+                    radioButtonFour.setEnabled(false);
+                    contestResult(realAnswer, strUserAnswer);
                 }
             }
         });
         radioButtonTwo.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    radioButtonOne.setChecked(false);
-                    radioButtonThree.setChecked(false);
-                    radioButtonFour.setChecked(false);
+                if (isChecked) {
+                    strUserAnswer = "option_b";
+                    radioButtonOne.setEnabled(false);
+                    radioButtonThree.setEnabled(false);
+                    radioButtonFour.setEnabled(false);
+                    contestResult(realAnswer, strUserAnswer);
                 }
             }
         });
         radioButtonThree.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    radioButtonTwo.setChecked(false);
-                    radioButtonOne.setChecked(false);
-                    radioButtonFour.setChecked(false);
+                if (isChecked) {
+                    strUserAnswer = "option_c";
+                    radioButtonTwo.setEnabled(false);
+                    radioButtonOne.setEnabled(false);
+                    radioButtonFour.setEnabled(false);
+                    contestResult(realAnswer, strUserAnswer);
                 }
             }
         });
         radioButtonFour.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    radioButtonTwo.setChecked(false);
-                    radioButtonThree.setChecked(false);
-                    radioButtonOne.setChecked(false);
+                if (isChecked) {
+                    strUserAnswer = "option_q";
+                    radioButtonTwo.setEnabled(false);
+                    radioButtonThree.setEnabled(false);
+                    radioButtonOne.setEnabled(false);
+                    contestResult(realAnswer, strUserAnswer);
+
                 }
             }
         });
@@ -324,5 +343,25 @@ public class QuizFragment extends Fragment implements RewardedVideoAdListener {
             alertDialog.show();
         }
     }
+
+    private void contestResult(String answer, String userAnswer) {
+        Log.d("resultError", answer);
+        Log.d("resultError", userAnswer);
+
+        if (userAnswer.equals(answer)) {
+            count += 2;
+            Toast.makeText(getActivity(), String.valueOf(count), Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getActivity(), String.valueOf(count), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void radioButtonEnabled() {
+        radioButtonOne.setEnabled(true);
+        radioButtonTwo.setEnabled(true);
+        radioButtonThree.setEnabled(true);
+        radioButtonFour.setEnabled(true);
+    }
+
 
 }

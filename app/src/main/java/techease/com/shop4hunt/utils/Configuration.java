@@ -9,5 +9,5 @@ public class Configuration {
     public static String LOGIN = "https://choicegeek.com/mcqs/public/api/login";
     public static String MCQ="https://choicegeek.com/mcqs/public/api/mcq";
     public static String CHECK = "https://choicegeek.com/mcqs/public/api/check/";
-    public static String ChangeText = "";
+    public static String ChangeText = "https://choicegeek.com/mcqs/public/api/text";
 }
