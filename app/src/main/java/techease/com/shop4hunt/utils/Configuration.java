@@ -10,4 +10,5 @@ public class Configuration {
     public static String MCQ="https://choicegeek.com/mcqs/public/api/mcq";
     public static String CHECK = "https://choicegeek.com/mcqs/public/api/check/";
     public static String ChangeText = "https://choicegeek.com/mcqs/public/api/text";
+    public static String Result = "https://choicegeek.com/mcqs/public/api/mcqs/";
 }

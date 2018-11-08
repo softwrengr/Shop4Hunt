@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,11 +45,12 @@ import techease.com.shop4hunt.utils.GeneralUtils;
 public class ThanksFragment extends Fragment {
     android.support.v7.app.AlertDialog alertDialog;
     View view;
-    String userID;
+    String userID, strMarks;
     public static String FACEBOOK_URL = "https://www.facebook.com/PyarBareyLamhy/";
     public static String FACEBOOK_PAGE_ID = "367426056714023";
     public static String INSTAGRAM_URL = "https://www.instagram.com/shop4hunt/";
-    LinearLayout layoutInsta,layoutFb;
+    LinearLayout layoutInsta, layoutFb;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -58,11 +60,14 @@ public class ThanksFragment extends Fragment {
         layoutInsta = view.findViewById(R.id.layoutInsta);
 
         userID = String.valueOf(GeneralUtils.getUserID(getActivity()));
+        strMarks = String.valueOf(QuizFragment.count);
         alertDialog = AlertUtils.createProgressDialog(getActivity());
         alertDialog.show();
+        apiCallForResult();
         apiCall();
 
         Toast.makeText(getActivity(), String.valueOf(QuizFragment.count), Toast.LENGTH_SHORT).show();
+
 
         layoutFb.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,7 +84,7 @@ public class ThanksFragment extends Fragment {
             public void onClick(View v) {
                 //Intent facebookIntent = new Intent(Intent.ACTION_VIEW);
                 //Intent facebookUrl = intagramPageLoad(INSTAGRAM_URL,getActivity());
-                intagramPageLoad(INSTAGRAM_URL,getActivity());
+                intagramPageLoad(INSTAGRAM_URL, getActivity());
 
             }
         });
@@ -87,12 +92,12 @@ public class ThanksFragment extends Fragment {
     }
 
     public void apiCall() {
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, Configuration.CHECK+userID
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Configuration.CHECK + userID
                 , new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 alertDialog.dismiss();
-                if(response.contains("true")){
+                if (response.contains("true")) {
                     showSweetDialog();
                 }
 
@@ -125,13 +130,52 @@ public class ThanksFragment extends Fragment {
 
     }
 
-    private void showSweetDialog(){
+    public void apiCallForResult() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Configuration.Result + userID
+                , new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                alertDialog.dismiss();
+                if (response.contains("true")) {
+                    Toast.makeText(getActivity(), "Result will be announce by going live on facebook or instagrame pages", Toast.LENGTH_LONG).show();
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("error", "you got some error");
+            }
+        }) {
+            @Override
+            public String getBodyContentType() {
+                return "application/x-www-form-urlencoded;charset=UTF-8";
+            }
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("result", strMarks+"/10");
+                return params;
+
+            }
+        };
+        RequestQueue mRequestQueue = Volley.newRequestQueue(getActivity());
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(20000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        mRequestQueue.add(stringRequest);
+
+    }
+
+    private void showSweetDialog() {
         SweetAlertDialog sweetAlertDialog = new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE);
         sweetAlertDialog.setConfirmText("Back")
                 .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                     @Override
                     public void onClick(SweetAlertDialog sweetAlertDialog) {
-                      //  GeneralUtils.connectFragment(getActivity(),new HomeFragment());
+                        //  GeneralUtils.connectFragment(getActivity(),new HomeFragment());
                         sweetAlertDialog.dismiss();
                     }
                 })
@@ -149,7 +193,7 @@ public class ThanksFragment extends Fragment {
         sweetAlertDialog.show();
     }
 
-    public String  getFacebookPageURL(Context context) {
+    public String getFacebookPageURL(Context context) {
 
         PackageManager packageManager = context.getPackageManager();
         try {
@@ -165,7 +209,7 @@ public class ThanksFragment extends Fragment {
 
     }
 
-    public void intagramPageLoad(String url,Context context){
+    public void intagramPageLoad(String url, Context context) {
         PackageManager pm = context.getPackageManager();
         final Intent intent = new Intent(Intent.ACTION_VIEW);
         try {
@@ -177,12 +221,12 @@ public class ThanksFragment extends Fragment {
                 intent.setData(Uri.parse("http://instagram.com/_u/" + username));
                 intent.setPackage("com.instagram.android");
                 startActivity(intent);
-               // return intent;
+                // return intent;
             }
         } catch (PackageManager.NameNotFoundException ignored) {
         }
         intent.setData(Uri.parse(url));
-      //  return intent;
+        //  return intent;
         startActivity(intent);
     }
 }
