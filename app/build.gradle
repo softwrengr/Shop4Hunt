@@ -4,7 +4,7 @@ android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "techease.com.shop4hunt"
-        minSdkVersion 16
+        minSdkVersion 20
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"

@@ -123,6 +123,7 @@ public class QuizFragment extends Fragment implements RewardedVideoAdListener {
                     radioButtonEnabled();
                 } else if (next == 6) {
                     GeneralUtils.connectFragment(getActivity(), new ThanksFragment());
+                    count=0;
                 }
             }
         });
@@ -260,7 +261,7 @@ public class QuizFragment extends Fragment implements RewardedVideoAdListener {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                Log.d("error","you got some error");
             }
         }) {
             @Override
@@ -350,9 +351,10 @@ public class QuizFragment extends Fragment implements RewardedVideoAdListener {
 
         if (userAnswer.equals(answer)) {
             count += 2;
-            Toast.makeText(getActivity(), String.valueOf(count), Toast.LENGTH_SHORT).show();
+            GeneralUtils.putIntegerValueInEditor(getActivity(),"score",count);
+            Log.d("count",String.valueOf(count));
         } else {
-            Toast.makeText(getActivity(), String.valueOf(count), Toast.LENGTH_SHORT).show();
+            Log.d("count",String.valueOf(count));
         }
     }
 

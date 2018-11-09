@@ -170,7 +170,6 @@ public class HomeFragment extends Fragment {
                         JSONObject object = jsonArray.getJSONObject(0);
                         strBtnText = object.getString("text");
                         btnPlay.setText(strBtnText);
-                        Toast.makeText(getActivity(), strBtnText, Toast.LENGTH_SHORT).show();
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

@@ -57,4 +57,8 @@ public class GeneralUtils {
     public static int getUserID(Context context){
         return getSharedPreferences(context).getInt("id",0);
     }
+
+    public static int getUserScore(Context context){
+        return getSharedPreferences(context).getInt("score",0);
+    }
 }

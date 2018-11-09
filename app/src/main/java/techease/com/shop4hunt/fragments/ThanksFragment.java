@@ -60,13 +60,13 @@ public class ThanksFragment extends Fragment {
         layoutInsta = view.findViewById(R.id.layoutInsta);
 
         userID = String.valueOf(GeneralUtils.getUserID(getActivity()));
-        strMarks = String.valueOf(QuizFragment.count);
+        strMarks = String.valueOf(GeneralUtils.getUserScore(getActivity()));
         alertDialog = AlertUtils.createProgressDialog(getActivity());
         alertDialog.show();
         apiCallForResult();
         apiCall();
 
-        Toast.makeText(getActivity(), String.valueOf(QuizFragment.count), Toast.LENGTH_SHORT).show();
+        Log.d("count",String.valueOf(GeneralUtils.getUserScore(getActivity())));
 
 
         layoutFb.setOnClickListener(new View.OnClickListener() {
@@ -169,30 +169,6 @@ public class ThanksFragment extends Fragment {
 
     }
 
-    private void showSweetDialog() {
-        SweetAlertDialog sweetAlertDialog = new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE);
-        sweetAlertDialog.setConfirmText("Back")
-                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                    @Override
-                    public void onClick(SweetAlertDialog sweetAlertDialog) {
-                        //  GeneralUtils.connectFragment(getActivity(),new HomeFragment());
-                        sweetAlertDialog.dismiss();
-                    }
-                })
-                .setTitleText("Message")
-                .setContentText("You have successfully play the contest")
-                .setOnKeyListener(new DialogInterface.OnKeyListener() {
-                    @Override
-                    public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-
-                        return false;
-                    }
-                });
-
-        sweetAlertDialog.setCancelable(false);
-        sweetAlertDialog.show();
-    }
-
     public String getFacebookPageURL(Context context) {
 
         PackageManager packageManager = context.getPackageManager();
@@ -221,12 +197,34 @@ public class ThanksFragment extends Fragment {
                 intent.setData(Uri.parse("http://instagram.com/_u/" + username));
                 intent.setPackage("com.instagram.android");
                 startActivity(intent);
-                // return intent;
             }
         } catch (PackageManager.NameNotFoundException ignored) {
         }
         intent.setData(Uri.parse(url));
-        //  return intent;
         startActivity(intent);
+    }
+
+    private void showSweetDialog() {
+        SweetAlertDialog sweetAlertDialog = new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE);
+        sweetAlertDialog.setConfirmText("Ok")
+                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                        //  GeneralUtils.connectFragment(getActivity(),new HomeFragment());
+                        sweetAlertDialog.dismiss();
+                    }
+                })
+                .setTitleText("Message")
+                .setContentText("You have successfully play the contest")
+                .setOnKeyListener(new DialogInterface.OnKeyListener() {
+                    @Override
+                    public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+
+                        return false;
+                    }
+                });
+
+        sweetAlertDialog.setCancelable(false);
+        sweetAlertDialog.show();
     }
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,6 +83,7 @@ public class SignupFragment extends Fragment {
             public void onResponse(Call<SignupResponseModel> call, Response<SignupResponseModel> response) {
                 alertDialog.dismiss();
                 strResponse = response.body().getMessage();
+                Log.d("user",response.body().getMessage());
                 if (response.body().getMessage().equals("User successfully registered")) {
 
                     Toast.makeText(getActivity(), "User successfully Registered", Toast.LENGTH_SHORT).show();
