@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -46,10 +47,11 @@ public class ThanksFragment extends Fragment {
     android.support.v7.app.AlertDialog alertDialog;
     View view;
     String userID, strMarks;
-    public static String FACEBOOK_URL = "https://www.facebook.com/PyarBareyLamhy/";
+    public static String FACEBOOK_URL = "https://www.facebook.com/shop4hunt/";
     public static String FACEBOOK_PAGE_ID = "367426056714023";
     public static String INSTAGRAM_URL = "https://www.instagram.com/shop4hunt/";
     LinearLayout layoutInsta, layoutFb;
+    TextView tvContestID,tvContestantID,tvResultDate;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,9 +60,13 @@ public class ThanksFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_thanks, container, false);
         layoutFb = view.findViewById(R.id.layoutFb);
         layoutInsta = view.findViewById(R.id.layoutInsta);
+        tvContestantID = view.findViewById(R.id.tv_contestant_id);
+        tvContestID = view.findViewById(R.id.tv_contest_id);
+        tvResultDate = view.findViewById(R.id.tv_result_date);
 
         userID = String.valueOf(GeneralUtils.getUserID(getActivity()));
         strMarks = String.valueOf(GeneralUtils.getUserScore(getActivity()));
+        tvContestantID.setText("ContestantID = "+userID);
         alertDialog = AlertUtils.createProgressDialog(getActivity());
         alertDialog.show();
         apiCallForResult();

@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:background="#eee"
     android:orientation="vertical"
+    android:layout_gravity="center"
     tools:context="techease.com.shop4hunt.fragments.ThanksFragment">
 
 
@@ -14,7 +15,7 @@
         android:textStyle="bold"
         android:textColor="@color/black"
         android:textSize="22sp"
-        android:layout_marginTop="10sp"
+        android:layout_marginTop="30sp"
         android:text="Thank you"/>
 
     <TextView
@@ -28,64 +29,110 @@
 
 
     <LinearLayout
-        android:layout_width="220sp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="250sp"
+        android:orientation="vertical"
         android:layout_gravity="center"
-        android:layout_marginTop="50sp"
-        android:orientation="vertical">
+        android:layout_marginTop="10sp"
+        android:background="@drawable/rounded_btn">
+        <TextView
+            android:id="@+id/tv_contest_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textStyle="normal"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:layout_marginTop="20sp"
+            android:text="Contest ID = 001"/>
+
+        <TextView
+            android:id="@+id/tv_contestant_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textStyle="normal"
+            android:textColor="@color/black"
+            android:layout_marginTop="5sp"
+            android:textSize="14sp"
+            android:text="Contestant ID = 05"/>
+
+        <TextView
+            android:id="@+id/tv_result_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textStyle="normal"
+            android:textColor="@color/black"
+            android:layout_marginTop="5sp"
+            android:textSize="14sp"
+            android:text="Result Date = 05/12/2018"/>
+
 
         <LinearLayout
-            android:id="@+id/layoutFb"
             android:layout_width="220sp"
             android:layout_height="wrap_content"
-            android:background="@drawable/rounded_btn"
-            android:gravity="center"
-            android:orientation="horizontal">
-            <TextView
-                android:id="@+id/followFB"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Follow us on Facebook"
-                android:textColor="@color/black"
-                />
-            <ImageView
-                android:layout_width="40sp"
-                android:layout_height="40sp"
-                android:layout_marginLeft="10sp"
-                android:src="@drawable/facebook"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/layoutInsta"
-            android:layout_width="220sp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rounded_btn"
             android:gravity="center"
             android:layout_gravity="center"
-            android:layout_marginTop="10sp"
-            android:orientation="horizontal">
+            android:layout_marginTop="20sp"
+            android:orientation="vertical">
 
-
-            <TextView
-                android:id="@+id/followInsta"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/layoutFb"
+                android:layout_width="220sp"
                 android:layout_height="wrap_content"
-                android:text="Follow us on Instagram"
-                android:textColor="@color/black"
-                />
+                android:background="@drawable/rounded_btn"
+                android:gravity="center"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/followFB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Follow us on Facebook"
+                    android:textColor="@color/black"
+                    />
+                <ImageView
+                    android:layout_width="40sp"
+                    android:layout_height="40sp"
+                    android:layout_marginLeft="10sp"
+                    android:src="@drawable/facebook"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutInsta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_btn"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_marginTop="10sp"
+                android:layout_marginBottom="20sp"
+                android:orientation="horizontal">
 
 
-            <ImageView
-                android:layout_width="40sp"
-                android:layout_height="40sp"
-                android:layout_marginLeft="10sp"
-                android:src="@drawable/instagram"/>
+                <TextView
+                    android:id="@+id/followInsta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Follow us on Instagram"
+                    android:textColor="@color/black"
+                    />
+
+
+                <ImageView
+                    android:layout_width="40sp"
+                    android:layout_height="40sp"
+                    android:layout_marginLeft="10sp"
+                    android:src="@drawable/instagram"/>
+
+            </LinearLayout>
+
 
         </LinearLayout>
-
-
     </LinearLayout>
+
+
+
 
 </LinearLayout>

@@ -291,6 +291,7 @@ public class QuizFragment extends Fragment implements RewardedVideoAdListener {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                    mRewardedVideoAd.show();
                     strUserAnswer = "option_a";
                     radioButtonTwo.setEnabled(false);
                     radioButtonThree.setEnabled(false);
@@ -303,6 +304,7 @@ public class QuizFragment extends Fragment implements RewardedVideoAdListener {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                    mRewardedVideoAd.show();
                     strUserAnswer = "option_b";
                     radioButtonOne.setEnabled(false);
                     radioButtonThree.setEnabled(false);
@@ -315,6 +317,7 @@ public class QuizFragment extends Fragment implements RewardedVideoAdListener {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                    mRewardedVideoAd.show();
                     strUserAnswer = "option_c";
                     radioButtonTwo.setEnabled(false);
                     radioButtonOne.setEnabled(false);
@@ -327,6 +330,7 @@ public class QuizFragment extends Fragment implements RewardedVideoAdListener {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                    mRewardedVideoAd.show();
                     strUserAnswer = "option_q";
                     radioButtonTwo.setEnabled(false);
                     radioButtonThree.setEnabled(false);
@@ -365,5 +369,12 @@ public class QuizFragment extends Fragment implements RewardedVideoAdListener {
         radioButtonFour.setEnabled(true);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mRewardedVideoAd.isLoaded()) {
+            mRewardedVideoAd.show();
+        }
 
+    }
 }
