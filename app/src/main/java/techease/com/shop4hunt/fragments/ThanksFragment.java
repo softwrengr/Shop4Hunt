@@ -46,7 +46,7 @@ import techease.com.shop4hunt.utils.GeneralUtils;
 public class ThanksFragment extends Fragment {
     android.support.v7.app.AlertDialog alertDialog;
     View view;
-    String userID, strMarks;
+    String userID, strMarks,contestID,strResultDate;
     public static String FACEBOOK_URL = "https://www.facebook.com/shop4hunt/";
     public static String FACEBOOK_PAGE_ID = "367426056714023";
     public static String INSTAGRAM_URL = "https://www.instagram.com/shop4hunt/";
@@ -64,11 +64,14 @@ public class ThanksFragment extends Fragment {
         tvContestID = view.findViewById(R.id.tv_contest_id);
         tvResultDate = view.findViewById(R.id.tv_result_date);
 
+        contestID = GeneralUtils.getContestID(getActivity());
         userID = String.valueOf(GeneralUtils.getUserID(getActivity()));
         strMarks = String.valueOf(GeneralUtils.getUserScore(getActivity()));
         tvContestantID.setText("ContestantID = "+userID);
+        tvContestID.setText("Contest ID = "+contestID);
         alertDialog = AlertUtils.createProgressDialog(getActivity());
         alertDialog.show();
+        getContestResult();
         apiCallForResult();
         apiCall();
 
@@ -137,7 +140,7 @@ public class ThanksFragment extends Fragment {
     }
 
     public void apiCallForResult() {
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, Configuration.Result + userID
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Configuration.Result
                 , new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -162,6 +165,8 @@ public class ThanksFragment extends Fragment {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
+                params.put("contest_id", contestID);
+                params.put("user_id", userID);
                 params.put("result", strMarks+"/10");
                 return params;
 
@@ -216,7 +221,6 @@ public class ThanksFragment extends Fragment {
                 .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                     @Override
                     public void onClick(SweetAlertDialog sweetAlertDialog) {
-                        //  GeneralUtils.connectFragment(getActivity(),new HomeFragment());
                         sweetAlertDialog.dismiss();
                     }
                 })
@@ -232,5 +236,45 @@ public class ThanksFragment extends Fragment {
 
         sweetAlertDialog.setCancelable(false);
         sweetAlertDialog.show();
+    }
+
+    private void getContestResult(){
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Configuration.ResultDate
+                , new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                if (response.contains("200")) {
+                    try {
+                        JSONObject jsonObject = new JSONObject(response);
+                        JSONArray jsonArray = jsonObject.getJSONArray("data");
+                        JSONObject jsonObject1 = jsonArray.getJSONObject(0);
+                        strResultDate =  jsonObject1.getString("result_date");
+                        tvResultDate.setText("Result Date = "+strResultDate);
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("error","you got some error");
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                return headers;
+            }
+        };
+        RequestQueue mRequestQueue = Volley.newRequestQueue(getActivity());
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(20000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        mRequestQueue.add(stringRequest);
     }
 }

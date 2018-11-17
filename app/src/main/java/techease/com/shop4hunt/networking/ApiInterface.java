@@ -23,6 +23,7 @@ public interface ApiInterface {
     Call<SignupResponseModel> userRegistration( @Field("name") String name,
                                                 @Field("phone") String phone,
                                                 @Field("email") String email,
+                                                @Field("address") String address,
                                                @Field("password") String password);
 
 }

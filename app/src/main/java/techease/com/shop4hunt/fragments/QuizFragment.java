@@ -190,6 +190,8 @@ public class QuizFragment extends Fragment implements RewardedVideoAdListener {
                         JSONArray jsonArray = jsonObject.getJSONArray("data");
                         if (checking == 0) {
                             JSONObject jsonObject1 = jsonArray.getJSONObject(0);
+                            String contestID = jsonObject1.getString("contest_id");
+                            GeneralUtils.putStringValueInEditor(getActivity(),"contestID",contestID);
                             String question = jsonObject1.getString("question");
                             String strOptionA = jsonObject1.getString("option_a");
                             String strOptionB = jsonObject1.getString("option_b");

@@ -189,7 +189,7 @@ public class LoginFragment extends Fragment {
                      sweetAlertDialog.dismiss();
                     }
                 })
-                .setTitleText("Message")
+                .setTitleText("Contestant ID = "+GeneralUtils.getUserID(getActivity()))
                 .setContentText("You have play this contest already please wait for the next one!")
                 .setOnKeyListener(new DialogInterface.OnKeyListener() {
                     @Override

@@ -39,9 +39,12 @@ public class SignupFragment extends Fragment {
     EditText etName;
     @BindView(R.id.et_userPassword)
     EditText etPassword;
+    @BindView(R.id.et_userAddress)
+    EditText etAddress;
     @BindView(R.id.btn_signup)
     Button btnSignup;
-    String strName, strEmail, strPhone, strPassword, strResponse;
+
+    String strName, strEmail, strPhone, strPassword, strResponse,strAddress;
 
     private boolean valid = false;
 
@@ -77,13 +80,13 @@ public class SignupFragment extends Fragment {
 
     private void userRegistration() {
         ApiInterface services = ApiClient.getApiClient().create(ApiInterface.class);
-        Call<SignupResponseModel> userLogin = services.userRegistration(strName, strPhone, strEmail, strPassword);
+        Call<SignupResponseModel> userLogin = services.userRegistration(strName, strPhone, strEmail,strAddress, strPassword);
         userLogin.enqueue(new Callback<SignupResponseModel>() {
             @Override
             public void onResponse(Call<SignupResponseModel> call, Response<SignupResponseModel> response) {
                 alertDialog.dismiss();
                 strResponse = response.body().getMessage();
-                Log.d("user",response.body().getMessage());
+                Log.d("user", response.body().getMessage());
                 if (response.body().getMessage().equals("User successfully registered")) {
 
                     Toast.makeText(getActivity(), "User successfully Registered", Toast.LENGTH_SHORT).show();
@@ -110,6 +113,7 @@ public class SignupFragment extends Fragment {
         strName = etName.getText().toString();
         strPhone = etPhone.getText().toString();
         strEmail = etEmail.getText().toString();
+        strAddress = etAddress.getText().toString();
         strPassword = etPassword.getText().toString();
 
 
@@ -127,6 +131,12 @@ public class SignupFragment extends Fragment {
         }
         if (strEmail.isEmpty()) {
             etEmail.setError("enter a valid email address");
+            valid = false;
+        } else {
+            etEmail.setError(null);
+        }
+        if (strAddress.isEmpty()) {
+            etAddress.setError("enter a your address");
             valid = false;
         } else {
             etEmail.setError(null);

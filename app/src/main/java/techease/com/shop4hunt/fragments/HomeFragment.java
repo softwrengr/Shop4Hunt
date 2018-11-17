@@ -60,7 +60,7 @@ public class HomeFragment extends Fragment {
         btnPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GeneralUtils.connectFragmentWithBackStack(getActivity(),new LoginSignupFragment());
+                GeneralUtils.connectFragment(getActivity(),new LoginSignupFragment());
 
 
             }
