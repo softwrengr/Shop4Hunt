@@ -65,4 +65,11 @@ public class GeneralUtils {
     public static String getContestID(Context context){
         return getSharedPreferences(context).getString("contestID","");
     }
+
+    public static String getEmail(Context context){
+        return getSharedPreferences(context).getString("email","");
+    }
+    public static String getToken(Context context){
+        return getSharedPreferences(context).getString("token","");
+    }
 }
