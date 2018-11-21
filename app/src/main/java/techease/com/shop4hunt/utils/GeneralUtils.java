@@ -72,4 +72,7 @@ public class GeneralUtils {
     public static String getToken(Context context){
         return getSharedPreferences(context).getString("token","");
     }
+    public static String getResultDate(Context context){
+        return getSharedPreferences(context).getString("date","");
+    }
 }

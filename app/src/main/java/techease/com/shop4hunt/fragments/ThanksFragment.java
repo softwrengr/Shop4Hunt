@@ -250,6 +250,7 @@ public class ThanksFragment extends Fragment {
                         JSONObject jsonObject1 = jsonArray.getJSONObject(0);
                         strResultDate =  jsonObject1.getString("result_date");
                         tvResultDate.setText("Result Date = "+strResultDate);
+                        GeneralUtils.putStringValueInEditor(getActivity(),"date",strResultDate);
 
 
                     } catch (JSONException e) {

@@ -1,8 +1,12 @@
 package techease.com.shop4hunt.fragments;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.util.Log;
@@ -12,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -60,6 +65,12 @@ public class LoginFragment extends Fragment {
     private boolean valid = false;
     private String strEmail;
     private String strPassword;
+    String userID, strMarks,contestID,strResultDate;
+    public static String FACEBOOK_URL = "https://www.facebook.com/shop4hunt/";
+    public static String FACEBOOK_PAGE_ID = "367426056714023";
+    public static String INSTAGRAM_URL = "https://www.instagram.com/shop4hunt/";
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -189,27 +200,71 @@ public class LoginFragment extends Fragment {
     }
 
     private void showAlert(){
-        SweetAlertDialog sweetAlertDialog = new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE);
-        sweetAlertDialog.setConfirmText("Back")
-                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                    @Override
-                    public void onClick(SweetAlertDialog sweetAlertDialog) {
-                     GeneralUtils.connectFragment(getActivity(),new HomeFragment());
-                     sweetAlertDialog.dismiss();
-                    }
-                })
-                .setTitleText("Contestant ID = "+GeneralUtils.getUserID(getActivity()))
-                .setContentText("You have play this contest already please wait for the next one!")
-                .setOnKeyListener(new DialogInterface.OnKeyListener() {
-                    @Override
-                    public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+        Dialog dialog = new Dialog(getActivity());
+        dialog.setContentView(R.layout.dialog_layout);
+        LinearLayout layoutInsta, layoutFb;
+        TextView tvContestID,tvContestantID,tvResultDate;
+        layoutFb = dialog.findViewById(R.id.dialog_layoutFb);
+        layoutInsta = dialog.findViewById(R.id.dialog_layoutInsta);
+        tvContestID = dialog.findViewById(R.id.dialog_tv_contest_id);
+        tvContestantID = dialog.findViewById(R.id.dialog_tv_contestant_id);
+        tvResultDate = dialog.findViewById(R.id.dialog_tv_result_date);
+        tvContestID.setText("Contest ID = "+GeneralUtils.getContestID(getActivity()));
+        tvContestantID.setText("Contestant ID = "+String.valueOf(GeneralUtils.getUserID(getActivity())));
+        tvResultDate.setText("Result Date = "+GeneralUtils.getResultDate(getActivity()));
 
-                        return false;
-                    }
-                });
+        layoutFb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent facebookIntent = new Intent(Intent.ACTION_VIEW);
+                String facebookUrl = getFacebookPageURL(getActivity());
+                facebookIntent.setData(Uri.parse(facebookUrl));
+                startActivity(facebookIntent);
+            }
+        });
+        layoutInsta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intagramPageLoad(INSTAGRAM_URL, getActivity());
+            }
+        });
+        dialog.show();
+    }
 
-        sweetAlertDialog.setCancelable(false);
-        sweetAlertDialog.show();
+
+    public String getFacebookPageURL(Context context) {
+
+        PackageManager packageManager = context.getPackageManager();
+        try {
+            int versionCode = packageManager.getPackageInfo("com.facebook.katana", 0).versionCode;
+            if (versionCode >= 3002850) { //newer versions of fb app
+                return "fb://facewebmodal/f?href=" + FACEBOOK_URL;
+            } else { //older versions of fb app
+                return "fb://page/" + FACEBOOK_PAGE_ID;
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            return FACEBOOK_URL;
+        }
+
+    }
+
+    public void intagramPageLoad(String url, Context context) {
+        PackageManager pm = context.getPackageManager();
+        final Intent intent = new Intent(Intent.ACTION_VIEW);
+        try {
+            if (pm.getPackageInfo("com.instagram.android", 0) != null) {
+                if (url.endsWith("/")) {
+                    url = url.substring(0, url.length() - 1);
+                }
+                final String username = url.substring(url.lastIndexOf("/") + 1);
+                intent.setData(Uri.parse("http://instagram.com/_u/" + username));
+                intent.setPackage("com.instagram.android");
+                startActivity(intent);
+            }
+        } catch (PackageManager.NameNotFoundException ignored) {
+        }
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
     }
 
 

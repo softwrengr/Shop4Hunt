@@ -87,10 +87,10 @@ public class HomeFragment extends Fragment {
         webView.getSettings().setBuiltInZoomControls(true);
         webView.getSettings().setPluginState(WebSettings.PluginState.ON);
         webView.setWebViewClient(new HelloWebViewClient());
-        if (alertDialog == null) {
-            alertDialog = AlertUtils.createProgressDialog(getActivity());
-            alertDialog.show();
-        }
+//        if (alertDialog == null) {
+//            alertDialog = AlertUtils.createProgressDialog(getActivity());
+//            alertDialog.show();
+//        }
         webView.loadUrl(url);
 
         webView.setOnKeyListener(new View.OnKeyListener(){
@@ -108,10 +108,10 @@ public class HomeFragment extends Fragment {
     private class HelloWebViewClient extends WebViewClient {
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
-            if (alertDialog == null) {
-                alertDialog = AlertUtils.createProgressDialog(getActivity());
-                alertDialog.show();
-            }
+//            if (alertDialog == null) {
+//                alertDialog = AlertUtils.createProgressDialog(getActivity());
+//                alertDialog.show();
+//            }
             super.onPageStarted(view, url, favicon);
         }
 
@@ -127,9 +127,9 @@ public class HomeFragment extends Fragment {
 
         @Override
         public void onPageFinished(WebView view, String url) {
-            if (alertDialog != null) {
-                alertDialog.dismiss();
-            }
+//            if (alertDialog != null) {
+//                alertDialog.dismiss();
+//            }
             super.onPageFinished(view, url);
         }
     }
