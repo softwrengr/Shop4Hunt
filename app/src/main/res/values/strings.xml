@@ -7,4 +7,7 @@
     <string name="title_activity_fullscreen">FullscreenActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string name="app_id">ca-app-pub-3700083288427325~7819119813</string>
+    <string name="reward_id">ca-app-pub-3700083288427325/1402434010</string>
 </resources>

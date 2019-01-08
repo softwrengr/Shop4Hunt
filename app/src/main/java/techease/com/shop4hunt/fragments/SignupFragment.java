@@ -80,7 +80,7 @@ public class SignupFragment extends Fragment {
 
     private void userRegistration() {
         ApiInterface services = ApiClient.getApiClient().create(ApiInterface.class);
-        Call<SignupResponseModel> userLogin = services.userRegistration(strName, strPhone, strEmail,strAddress, strPassword);
+        Call<SignupResponseModel> userLogin = services.userRegistration(strName, strPhone, strEmail, strPassword,strAddress);
         userLogin.enqueue(new Callback<SignupResponseModel>() {
             @Override
             public void onResponse(Call<SignupResponseModel> call, Response<SignupResponseModel> response) {
@@ -90,6 +90,7 @@ public class SignupFragment extends Fragment {
                 if (response.body().getMessage().equals("User successfully registered")) {
 
                     Toast.makeText(getActivity(), "User successfully Registered", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), strPassword, Toast.LENGTH_SHORT).show();
                     GeneralUtils.connectFragment(getActivity(), new LoginFragment());
 
                 } else if (response.body().getMessage().equals("Email Already Exist")) {

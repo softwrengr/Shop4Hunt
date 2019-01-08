@@ -8,6 +8,7 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class LoginResponseModel {
+
     @SerializedName("success")
     @Expose
     private Boolean success;
@@ -52,4 +53,5 @@ public class LoginResponseModel {
     public void setData(LoginDetailModel data) {
         this.data = data;
     }
+
 }

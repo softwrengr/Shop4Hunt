@@ -80,7 +80,7 @@ public class QuizFragment extends Fragment implements RewardedVideoAdListener {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_quiz, container, false);
 
-        MobileAds.initialize(getActivity(), "ca-app-pub-3940256099942544~3347511713");
+        MobileAds.initialize(getActivity(), getResources().getString(R.string.app_id));
         mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(getActivity());
         mRewardedVideoAd.setRewardedVideoAdListener(this);
 
@@ -125,6 +125,7 @@ public class QuizFragment extends Fragment implements RewardedVideoAdListener {
                     GeneralUtils.connectFragment(getActivity(), new ThanksFragment());
                     count=0;
                 }
+
             }
         });
     }
@@ -137,7 +138,7 @@ public class QuizFragment extends Fragment implements RewardedVideoAdListener {
     }
 
     private void loadRewardedVideoAd() {
-        mRewardedVideoAd.loadAd("ca-app-pub-3940256099942544/5224354917",
+        mRewardedVideoAd.loadAd(getResources().getString(R.string.reward_id),
                 new AdRequest.Builder().build());
     }
 

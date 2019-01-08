@@ -65,11 +65,10 @@ public class LoginFragment extends Fragment {
     private boolean valid = false;
     private String strEmail;
     private String strPassword;
-    String userID, strMarks,contestID,strResultDate;
+    String userID, strMarks, contestID, strResultDate;
     public static String FACEBOOK_URL = "https://www.facebook.com/shop4hunt/";
     public static String FACEBOOK_PAGE_ID = "367426056714023";
     public static String INSTAGRAM_URL = "https://www.instagram.com/shop4hunt/";
-
 
 
     @Override
@@ -104,24 +103,23 @@ public class LoginFragment extends Fragment {
         tvForgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            GeneralUtils.connectFragment(getActivity(),new ForgotPasswordFragment());
+                GeneralUtils.connectFragment(getActivity(), new ForgotPasswordFragment());
             }
         });
     }
 
     private void userLogin() {
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://choicegeek.com/mcqs/public/api/login"
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Configuration.LOGIN
                 , new com.android.volley.Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 alertDialog.dismiss();
                 Log.d("resp", response);
-                if (response.contains("true")) {
 
+                if (response.contains("200")) {
                     try {
-                        if (alertDialog != null)
-                            alertDialog.dismiss();
+                        alertDialog.dismiss();
                         JSONObject jsonObject = new JSONObject(response);
                         JSONObject object = jsonObject.getJSONObject("data");
 
@@ -129,11 +127,10 @@ public class LoginFragment extends Fragment {
                         String check_login = object.getString("check_login");
                         GeneralUtils.putIntegerValueInEditor(getActivity(), "id", id);
 
-                        if(check_login.equals("true")){
+                        if (check_login.equals("true")) {
                             GeneralUtils.connectFragment(getActivity(), new QuizFragment());
-                        }
-                        else {
-                         showAlert();
+                        } else {
+                              showAlert();
                         }
 
 
@@ -142,8 +139,6 @@ public class LoginFragment extends Fragment {
                     }
 
                 } else {
-                    if (alertDialog != null)
-                        alertDialog.dismiss();
                     Toast.makeText(getActivity(), "Email or password is incorrect", Toast.LENGTH_SHORT).show();
                 }
 
@@ -153,7 +148,7 @@ public class LoginFragment extends Fragment {
             public void onErrorResponse(VolleyError error) {
                 if (alertDialog != null)
                     alertDialog.dismiss();
-                Toast.makeText(getActivity(), "Email or password is incorrect", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "you got some error", Toast.LENGTH_SHORT).show();
             }
         }) {
             @Override
@@ -175,6 +170,7 @@ public class LoginFragment extends Fragment {
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         mRequestQueue.add(stringRequest);
+
     }
 
 
@@ -199,19 +195,19 @@ public class LoginFragment extends Fragment {
         return valid;
     }
 
-    private void showAlert(){
+    private void showAlert() {
         Dialog dialog = new Dialog(getActivity());
         dialog.setContentView(R.layout.dialog_layout);
         LinearLayout layoutInsta, layoutFb;
-        TextView tvContestID,tvContestantID,tvResultDate;
+        TextView tvContestID, tvContestantID, tvResultDate;
         layoutFb = dialog.findViewById(R.id.dialog_layoutFb);
         layoutInsta = dialog.findViewById(R.id.dialog_layoutInsta);
         tvContestID = dialog.findViewById(R.id.dialog_tv_contest_id);
         tvContestantID = dialog.findViewById(R.id.dialog_tv_contestant_id);
         tvResultDate = dialog.findViewById(R.id.dialog_tv_result_date);
-        tvContestID.setText("Contest ID = "+GeneralUtils.getContestID(getActivity()));
-        tvContestantID.setText("Contestant ID = "+String.valueOf(GeneralUtils.getUserID(getActivity())));
-        tvResultDate.setText("Result Date = "+GeneralUtils.getResultDate(getActivity()));
+        tvContestID.setText("Contest ID = " + GeneralUtils.getContestID(getActivity()));
+        tvContestantID.setText("Contestant ID = " + String.valueOf(GeneralUtils.getUserID(getActivity())));
+        tvResultDate.setText("Result Date = " + GeneralUtils.getResultDate(getActivity()));
 
         layoutFb.setOnClickListener(new View.OnClickListener() {
             @Override

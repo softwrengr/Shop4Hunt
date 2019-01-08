@@ -129,13 +129,16 @@ public class ForgotPasswordFragment extends Fragment {
             @Override
             public void onResponse(Call<ResetPasswordDataModel> call, Response<ResetPasswordDataModel> response) {
                 alertDialog.dismiss();
-                if (response.body().getSuccess()) {
+                if(response.body()==null){
+                    Toast.makeText(getActivity(), "something went wrong please try again with correct email", Toast.LENGTH_SHORT).show();
+                }
+                else if (!response.body().getSuccess()) {
+                    Toast.makeText(getActivity(), "something went wrong please try again", Toast.LENGTH_SHORT).show();
+                }
+                else {
                     Toast.makeText(getActivity(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
                     layoutSendEmail.setVisibility(View.GONE);
                     layoutVerify.setVisibility(View.VISIBLE);
-                }
-                else {
-                    Toast.makeText(getActivity(), "something went wrong please try again", Toast.LENGTH_SHORT).show();
                 }
             }
 
