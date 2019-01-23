@@ -101,6 +101,7 @@ public class ForgotPasswordFragment extends Fragment {
         btnVerify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                GeneralUtils.putBooleanValueInEditor(getActivity(),"check_otp",false);
                 if (verify()) {
                     alertDialog = AlertUtils.createProgressDialog(getActivity());
                     alertDialog.show();
@@ -120,6 +121,25 @@ public class ForgotPasswordFragment extends Fragment {
             }
         });
 
+        if(GeneralUtils.getOTP(getActivity())){
+            layoutSendEmail.setVisibility(View.GONE);
+            layoutVerify.setVisibility(View.VISIBLE);
+            GeneralUtils.putBooleanValueInEditor(getActivity(),"check_otp",false);
+            btnVerify.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (verify()) {
+                        alertDialog = AlertUtils.createProgressDialog(getActivity());
+                        alertDialog.show();
+                        verifyCode();
+                    }
+                }
+            });
+        }
+        else {
+
+        }
+
     }
 
     private void resetPassword() {
@@ -136,9 +156,10 @@ public class ForgotPasswordFragment extends Fragment {
                     Toast.makeText(getActivity(), "something went wrong please try again", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    Toast.makeText(getActivity(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                    GeneralUtils.putBooleanValueInEditor(getActivity(),"check_otp",true);
                     layoutSendEmail.setVisibility(View.GONE);
                     layoutVerify.setVisibility(View.VISIBLE);
+                    Toast.makeText(getActivity(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
 

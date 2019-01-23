@@ -75,4 +75,9 @@ public class GeneralUtils {
     public static String getResultDate(Context context){
         return getSharedPreferences(context).getString("date","");
     }
+
+    public static Boolean getOTP(Context context){
+        return getSharedPreferences(context).getBoolean("check_otp",false);
+    }
+
 }

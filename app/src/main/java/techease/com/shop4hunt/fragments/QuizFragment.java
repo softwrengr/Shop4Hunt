@@ -296,9 +296,9 @@ public class QuizFragment extends Fragment implements RewardedVideoAdListener {
                 if (isChecked) {
                     mRewardedVideoAd.show();
                     strUserAnswer = "option_a";
-                    radioButtonTwo.setEnabled(false);
-                    radioButtonThree.setEnabled(false);
-                    radioButtonFour.setEnabled(false);
+                    radioButtonTwo.setChecked(false);
+                    radioButtonThree.setChecked(false);
+                    radioButtonFour.setChecked(false);
                     contestResult(realAnswer, strUserAnswer);
                 }
             }
@@ -309,9 +309,9 @@ public class QuizFragment extends Fragment implements RewardedVideoAdListener {
                 if (isChecked) {
                     mRewardedVideoAd.show();
                     strUserAnswer = "option_b";
-                    radioButtonOne.setEnabled(false);
-                    radioButtonThree.setEnabled(false);
-                    radioButtonFour.setEnabled(false);
+                    radioButtonOne.setChecked(false);
+                    radioButtonThree.setChecked(false);
+                    radioButtonFour.setChecked(false);
                     contestResult(realAnswer, strUserAnswer);
                 }
             }
@@ -322,9 +322,9 @@ public class QuizFragment extends Fragment implements RewardedVideoAdListener {
                 if (isChecked) {
                     mRewardedVideoAd.show();
                     strUserAnswer = "option_c";
-                    radioButtonTwo.setEnabled(false);
-                    radioButtonOne.setEnabled(false);
-                    radioButtonFour.setEnabled(false);
+                    radioButtonTwo.setChecked(false);
+                    radioButtonOne.setChecked(false);
+                    radioButtonFour.setChecked(false);
                     contestResult(realAnswer, strUserAnswer);
                 }
             }
@@ -335,9 +335,9 @@ public class QuizFragment extends Fragment implements RewardedVideoAdListener {
                 if (isChecked) {
                     mRewardedVideoAd.show();
                     strUserAnswer = "option_q";
-                    radioButtonTwo.setEnabled(false);
-                    radioButtonThree.setEnabled(false);
-                    radioButtonOne.setEnabled(false);
+                    radioButtonTwo.setChecked(false);
+                    radioButtonThree.setChecked(false);
+                    radioButtonOne.setChecked(false);
                     contestResult(realAnswer, strUserAnswer);
 
                 }
@@ -353,13 +353,10 @@ public class QuizFragment extends Fragment implements RewardedVideoAdListener {
     }
 
     private void contestResult(String answer, String userAnswer) {
-        Log.d("resultError", answer);
-        Log.d("resultError", userAnswer);
 
         if (userAnswer.equals(answer)) {
             count += 2;
             GeneralUtils.putIntegerValueInEditor(getActivity(),"score",count);
-            Log.d("count",String.valueOf(count));
         } else {
             Log.d("count",String.valueOf(count));
         }
