@@ -1,9 +1,11 @@
 package techease.com.shop4hunt.fragments;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.KeyEvent;
@@ -14,6 +16,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -41,20 +44,23 @@ import techease.com.shop4hunt.utils.NetworkUtils;
 
 
 public class HomeFragment extends Fragment {
+    View view;
     WebView webView;
     Button btnPlay;
     android.support.v7.app.AlertDialog alertDialog;
     String url = "http://www.shop4hunt.com/";
     String strBtnText = "play contest";
+    RelativeLayout relativeLayout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        view = inflater.inflate(R.layout.fragment_home, container, false);
         apiCall();
         webView = view.findViewById(R.id.webView);
         btnPlay = view.findViewById(R.id.btn_play);
+        relativeLayout = view.findViewById(R.id.background);
         initUI();
 
         btnPlay.setOnClickListener(new View.OnClickListener() {
@@ -119,6 +125,7 @@ public class HomeFragment extends Fragment {
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             view.loadUrl(url);
             if (!NetworkUtils.isNetworkConnected(getActivity())) {
+                view.setBackgroundColor(getActivity().getResources().getColor(R.color.black_overlay));
                 showError();
             }
 
@@ -127,9 +134,9 @@ public class HomeFragment extends Fragment {
 
         @Override
         public void onPageFinished(WebView view, String url) {
-//            if (alertDialog != null) {
-//                alertDialog.dismiss();
-//            }
+            if (alertDialog != null) {
+                alertDialog.dismiss();
+            }
             super.onPageFinished(view, url);
         }
     }
